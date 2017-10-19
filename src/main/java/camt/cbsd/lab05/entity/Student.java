@@ -1,5 +1,8 @@
 package camt.cbsd.lab05.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jdk.nashorn.internal.ir.annotations.Ignore;
+
 public class Student {
     long id;
     String studentId;
@@ -46,6 +49,10 @@ public class Student {
     public String getDescription() {
         return description;
     }
+
+
+    public Student(){}
+    @JsonIgnoreProperties(ignoreUnknown = true)
 
     public Student(long id, String studentId, String name, String surname, double gpa, String image, boolean feature, int penAmount, String description) {
         this.id = id;
