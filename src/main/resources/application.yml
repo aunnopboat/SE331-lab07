@@ -14,5 +14,5 @@ server:
 spring:
   profiles: remote
 server:
-  baseUrl: https://localhost:8080/
-  imageUrl: images/
+  baseUrl: https://s3-ap-southeast-1.amazonaws.com/se331/
+  imageUrl: pics/
