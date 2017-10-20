@@ -81,8 +81,8 @@ public class StudentController {
         if(file.isEmpty()){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
-        try{
-            byte[] bytes =  file.getBytes();
+        try {
+            byte[] bytes = file.getBytes();
            String oldFilename = file.getOriginalFilename();
            String ext = FilenameUtils.getExtension(oldFilename);
            String newFilename = Integer.toString(LocalTime.now().hashCode(),16)+Integer.toString(oldFilename.hashCode(),16)+"."+ext;
