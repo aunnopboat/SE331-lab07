@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import {Student} from '../student';
 import {Router} from "@angular/router";
 import {StudentsDataService} from "../../service/students-data.service";
@@ -17,6 +17,9 @@ export class StudentsAddComponent {
   }
 
 	upQuantity(student:Student){
+    if(student.penAmount == null ) {
+      student.penAmount = 0;
+    }
 		student.penAmount++;
 	}
 
@@ -25,16 +28,32 @@ export class StudentsAddComponent {
 			student.penAmount--;
 	}
 
-	addStudent(student:Student){
+/*	addStudent(student:Student){
 	  console.log(student)
     this.studentDataService.addStudent(student);
 	  alert("Add complete");
     this.router.navigate(['/list']);
-  }
+  }*/
 
   onFileChange(event,student:any){
     var filename= event.target.files[0].name;
     console.log(filename);
     student.image=filename;
+  }
+
+  @ViewChild('fileInput')inputEl: ElementRef;
+  addStudent(student: Student){
+    let result: Student;
+    console.log(student)
+    let inputEl: HTMLInputElement = this.inputEl.nativeElement ;
+    this.studentDataService.addStudent(student, inputEl.files.item(0))
+      .subscribe(resultStudent =>{
+        result = resultStudent
+        if(result != null ){
+          this.router.navigate(['list']);
+        } else {
+          alert("Erro in adding the student");
+        }
+      });
   }
 }

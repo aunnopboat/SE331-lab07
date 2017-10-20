@@ -52,6 +52,7 @@ public class Student {
 
 
     public Student(){}
+
     @JsonIgnoreProperties(ignoreUnknown = true)
 
     public Student(long id, String studentId, String name, String surname, double gpa, String image, boolean feature, int penAmount, String description) {
@@ -65,5 +66,9 @@ public class Student {
         this.feature = feature;
         this.penAmount = penAmount;
         this.description = description;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
